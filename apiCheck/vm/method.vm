@@ -1,0 +1,10 @@
+<span style="width: 360px;text-align: center;float: left;">
+    <select name="methodName" id="methodName" style="width: 350px;height: 25px" onchange="getArgs()">
+        <option value="选择方法" selected="selected">选择方法</option>
+        #if($!method && $method.size()>0)
+            #foreach($m in $method)
+                <option value="$m">$m</option>
+            #end
+        #end
+    </select>
+</span>

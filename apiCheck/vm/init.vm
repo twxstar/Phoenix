@@ -1,0 +1,53 @@
+<form id="awardForm" method="post" action="/check/check_doCheck.action" target="nm_iframe">
+    <div id="classInfo" style="width: 80%;text-align: center">
+    <span style="width: 360px;text-align: center;float: left;">
+        <select id="className" name="className" style="width: 350px;height: 25px" onchange="getMethod()">
+            <option value="选择类" selected="selected">选择类</option>
+            #if($!class && $class.size()>0)
+                #foreach($clazz in $class)
+                    <option value="$clazz">$clazz</option>
+                #end
+            #end
+        </select>
+    </span>
+    </div>
+
+    <div id="methodInfo">
+
+    </div>
+
+    <div id="argInfo">
+
+    </div>
+
+<div><input type="submit"></div>
+</form>
+<iframe id="id_iframe" name="nm_iframe"></iframe>
+<script>
+    function getMethod(){
+        var className = $("#className").val();
+        var url = "/check/check_method.action";
+        var param = {
+            "classComleteName":className
+        }
+        jQuery.post(url,param,function(data){
+            $("#methodInfo").empty().append(data);
+        });
+        $("#argInfo").empty();
+        $(parent.frames["nm_iframe"].document).find("#result").empty();
+    }
+
+    function getArgs(){
+        var className = $("#className").val();
+        var methodName = $("#methodName").val();
+        var url = "/check/check_args.action";
+        var param = {
+            "classComleteName":className,
+            "methodName":methodName
+        }
+        jQuery.post(url,param,function(data){
+            $("#argInfo").empty().append(data);
+        });
+        $(parent.frames["nm_iframe"].document).find("#result").empty();
+    }
+</script>

@@ -1,0 +1,16 @@
+<div>\
+    <br>
+    #foreach($arg in $args.entrySet())
+    <div style="float: left ; background-color: #c3daf9 ; border: 1px solid black ; margin: 25px ;width: 440px">
+        <h1 style="text-align: center">------${arg.getKey()}-------</h1>
+        #foreach($fieldName in $arg.getValue())
+            <div style="margin: 2px">
+                <span style="width: 50%;float: left;text-align: right">$fieldName</span>
+                <span style="width: 50%;float: left;text-align: left"><input name="${arg.getKey()}.$fieldName" type="text" /></span>
+            </div>
+            <div style="clear: both"></div>
+        #end
+        <br/>
+    </div>
+    #end
+</div>
