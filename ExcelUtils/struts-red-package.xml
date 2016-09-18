@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="GBK" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+    <!-- 红包有礼 -->
+    <package name="redpackage" namespace="/interact/redpackage" extends="interactPackage">
+
+        <result-types>
+            <result-type name="redirect" class="com.jd.pop.common.http.JdServletRedirectResult" />
+            <result-type name="redirectAction" class="com.jd.pop.common.http.JdServletActionRedirectResult" />
+        </result-types>
+
+        <global-results>
+            <result name="faultPage">/WEB-INF/vm/redpackage/faultPage.vm</result>
+        </global-results>
+
+        <action name="activity_view" method="view" class="com.jd.market.interact.vender.action.redPackage.RedPackageViewAction">
+            <result name="view">/WEB-INF/vm/redpackage/view.vm</result>
+        </action>
+
+        <action name="activity_detail" method="detail" class="com.jd.market.interact.vender.action.redPackage.RedPackageViewAction">
+            <result name="detail">/WEB-INF/vm/redpackage/detail.vm</result>
+        </action>
+
+        <action name="activity_create" method="create" class="com.jd.market.interact.vender.action.redPackage.RedPackageCreateAction">
+            <result name="create">/WEB-INF/vm/redpackage/create.vm</result>
+        </action>
+
+        <action name="activity_save" method="save" class="com.jd.market.interact.vender.action.redPackage.RedPackageCreateAction">
+            <result name="finish" type="redirect">/interact/redpackage/activity_view.action?flag=${flag}</result>
+            <result name="error" type="redirect">/interact/redpackage/activity_view.action?flag=${flag}</result>
+        </action>
+
+        <action name="activity_detailSku" method="detailSku" class="com.jd.market.interact.vender.action.redPackage.RedPackageViewAction">
+            <result name="detailSku">/WEB-INF/vm/redpackage/detailSku.vm</result>
+        </action>
+
+        <action name="activity_querySku" method="querySku" class="com.jd.market.interact.vender.action.redPackage.RedPackageCreateAction">
+            <result name="querySku">/WEB-INF/vm/redpackage/querySku.vm</result>
+        </action>
+
+        <action name="activity_detailBrand" method="detailBrand" class="com.jd.market.interact.vender.action.redPackage.RedPackageViewAction">
+            <result name="detailBrand">/WEB-INF/vm/redpackage/detailBrand.vm</result>
+        </action>
+
+        <action name="activity_queryBrand" method="queryBrand" class="com.jd.market.interact.vender.action.redPackage.RedPackageCreateAction">
+            <result name="queryBrand">/WEB-INF/vm/redpackage/queryBrand.vm</result>
+        </action>
+
+        <action name="redPackage_*" method="{1}" class="com.jd.market.interact.vender.action.redPackage.RedPackageDataAnalyseAction">
+            <result>/WEB-INF/vm/redpackage/analyse/{1}.vm</result>
+            <result name="downReport" type="stream">
+                <param name="inputName">inputStream</param>
+                <param name="ContentDisposition">attachment;filename=${fileName}</param>
+            </result>
+        </action>
+    </package>
+</struts>
